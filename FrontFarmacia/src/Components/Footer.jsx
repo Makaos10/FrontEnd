@@ -8,9 +8,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Información de la empresa */}
           <div>
-            <h5 className="text-xl font-bold text-green-600 mb-4">Farma el Mauri</h5>
+            <h5 className="text-xl font-bold text-green-600 mb-4">FarmaUY</h5>
             <p className="text-gray-600">
-              Tu farmacia de confianza, disponible las 24 horas para cuidar tu salud y bienestar.
+              Siempre a tu lado, cuidando de tu salud con los mejores productos y servicios.
             </p>
           </div>
 
@@ -22,15 +22,16 @@ const Footer = () => {
               <li><a href="#" className="text-gray-600 hover:text-green-600">Medicamentos</a></li>
               <li><a href="#" className="text-gray-600 hover:text-green-600">Cuidado personal</a></li>
               <li><a href="#" className="text-gray-600 hover:text-green-600">Ofertas</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-green-600">Donaciones</a></li>
             </ul>
           </div>
 
           {/* Contacto y redes sociales */}
           <div>
             <h6 className="font-bold text-gray-800 mb-4">Contacto</h6>
-            <p className="text-gray-600 mb-2">Email: contacto@farmaelmauri.com</p>
-            <p className="text-gray-600 mb-4">Tel: +54 9 112 345 6789</p>
-            
+            <p className="text-gray-600 mb-2">Email: contacto@farmauy.com</p>
+            <p className="text-gray-600 mb-2">Tel: +54 9 112 345 6789</p>
+            <p className="text-gray-600 mb-4">Dirección Canelones 1162</p>
             <div className="flex space-x-4">
               <a href="#" className="text-green-600 hover:text-green-700">
                 <Facebook size={24} />
@@ -47,7 +48,7 @@ const Footer = () => {
 
         {/* Línea final */}
         <div className="text-center pt-6 border-t border-gray-200">
-          <small className="text-gray-500">&copy; 2025 Farma el Mauri. Todos los derechos reservados.</small>
+          <small className="text-gray-500">&copy; 2025 FarmaUY. Todos los derechos reservados.</small>
         </div>
       </div>
     </footer>
