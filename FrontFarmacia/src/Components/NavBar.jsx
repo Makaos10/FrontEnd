@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ShoppingCart, User,} from 'lucide-react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Menu, X, ShoppingCart, User } from 'lucide-react';
 
 // Componente Navbar
 const Navbar = () => {
@@ -11,17 +12,28 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className="text-2xl font-bold text-green-600">
-              Farma
-            </a>
+            <Link to="/" className="text-2xl font-bold text-green-600">
+              FarmaUY
+            </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex space-x-8">
-            <a href="#" className="text-gray-700 hover:text-green-600">Inicio</a>
-            <a href="#" className="text-gray-700 hover:text-green-600">Medicamentos</a>
-            <a href="#" className="text-gray-700 hover:text-green-600">Cuidado personal</a>
-            <a href="#" className="text-gray-700 hover:text-green-600">Ofertas</a>
+            <Link to="/" className="text-gray-700 hover:text-green-600">
+              Inicio
+            </Link>
+            <Link to="/medicamentos" className="text-gray-700 hover:text-green-600">
+              Medicamentos
+            </Link>
+            <Link to="/cuidado-personal" className="text-gray-700 hover:text-green-600">
+              Cuidado personal
+            </Link>
+            <Link to="/ofertas" className="text-gray-700 hover:text-green-600">
+              Ofertas
+            </Link>
+            <Link to="/donaciones" className="text-red-700 hover:text-green-600">
+              Donaciones
+            </Link>
           </div>
 
           {/* Desktop Buttons */}
@@ -49,10 +61,41 @@ const Navbar = () => {
       {isOpen && (
         <div className="lg:hidden bg-white border-t">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <a href="#" className="block px-3 py-2 text-gray-700 hover:bg-green-50 rounded">Inicio</a>
-            <a href="#" className="block px-3 py-2 text-gray-700 hover:bg-green-50 rounded">Medicamentos</a>
-            <a href="#" className="block px-3 py-2 text-gray-700 hover:bg-green-50 rounded">Cuidado personal</a>
-            <a href="#" className="block px-3 py-2 text-gray-700 hover:bg-green-50 rounded">Ofertas</a>
+            <Link 
+              to="/Inicio" 
+              className="block px-3 py-2 text-gray-700 hover:bg-green-50 rounded"
+              onClick={() => setIsOpen(false)}
+            >
+              Inicio
+            </Link>
+            <Link 
+              to="/medicamentos" 
+              className="block px-3 py-2 text-gray-700 hover:bg-green-50 rounded"
+              onClick={() => setIsOpen(false)}
+            >
+              Medicamentos
+            </Link>
+            <Link 
+              to="/cuidado-personal" 
+              className="block px-3 py-2 text-gray-700 hover:bg-green-50 rounded"
+              onClick={() => setIsOpen(false)}
+            >
+              Cuidado personal
+            </Link>
+            <Link 
+              to="/ofertas" 
+              className="block px-3 py-2 text-gray-700 hover:bg-green-50 rounded"
+              onClick={() => setIsOpen(false)}
+            >
+              Ofertas
+            </Link>
+            <Link 
+              to="/donaciones" 
+              className="block px-3 py-2 text-red-700 hover:bg-green-50 rounded"
+              onClick={() => setIsOpen(false)}
+            >
+              Donaciones
+            </Link>
             <button className="w-full mt-2 px-3 py-2 border border-green-600 text-green-600 rounded">
               🛒 Carrito
             </button>
