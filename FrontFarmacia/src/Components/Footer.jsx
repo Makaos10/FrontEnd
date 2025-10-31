@@ -30,8 +30,9 @@ const Footer = () => {
           <div>
             <h6 className="font-bold text-gray-800 mb-4">Contacto</h6>
             <p className="text-gray-600 mb-2">Email: contacto@farmauy.com</p>
-            <p className="text-gray-600 mb-2">Tel: +54 9 112 345 6789</p>
-            <p className="text-gray-600 mb-4">Dirección Canelones 1162</p>
+            <p className="text-gray-600 mb-2">Tel: 092970747</p>
+            <p className="text-gray-600 mb-2">Dirección Canelones 1162</p>
+            <p className="text-gray-600 mb-2">Horario: Lun-Vie 8:00-19:00</p>
             <div className="flex space-x-4">
               <a href="#" className="text-green-600 hover:text-green-700">
                 <Facebook size={24} />
