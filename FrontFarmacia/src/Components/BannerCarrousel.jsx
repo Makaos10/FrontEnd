@@ -15,7 +15,7 @@ const BannerCarrousel = () => {
     },
     {
       id: 2,
-      image: '/api/placeholder/1200/300', // Reemplazar Imagén
+      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200', // Reemplazar Imagén
       alt: '15% OFF con Scotiabank',
       bgColor: 'bg-white',
       link: '#'

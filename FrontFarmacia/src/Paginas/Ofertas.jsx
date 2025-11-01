@@ -9,7 +9,7 @@ function Ofertas() {
     { id: 3, name: 'Kit Dental Completo', price: '1599', descuento: '40%', precioAnterior: '2699' },
     { id: 4, name: 'Suplemento Omega 3', price: '1999', descuento: '35%', precioAnterior: '3099' },
     { id: 5, name: 'Multivitamínico 60 tabs', price: '899', descuento: '20%', precioAnterior: '1125' },
-    { id: 6, name: 'Crema Facial Anti-Edad', price: '2199', descuento: '45%', precioAnterior: '3999' }
+    { id: 6, name: 'Crema Facial Anti-Edad', price: '2199', descuento: '45%', precioAnterior: '3999' },
   ];
 
   return (
@@ -17,7 +17,7 @@ function Ofertas() {
       <h1 className="text-3xl font-bold mb-4">Ofertas Especiales</h1>
       <p className="text-gray-600 mb-8">Aprovecha nuestras mejores promociones</p>
       
-      <div className="bg-yellow-50 border-2 border-yellow-400 p-4 rounded-lg mb-8">
+      <div className="bg-yellow-50 border-2 border-yellow-400 p-4 rounded-lg mb-8"> 
         <h3 className="text-xl font-bold mb-2">⏰ Ofertas válidas por tiempo limitado</h3>
         <p className="text-gray-700">No te pierdas estos increíbles descuentos</p>
       </div>

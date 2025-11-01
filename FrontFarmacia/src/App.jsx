@@ -10,6 +10,7 @@ import Medicamentos from './Paginas/Medicamentos';
 import CuidadoPersonal from './Paginas/CuidadoPersonal';
 import Donaciones from './Paginas/Donaciones';
 import Ofertas from './Paginas/Ofertas';
+import Carrito from './Paginas/Carrito';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/cuidado-personal" element={<CuidadoPersonal />} />
             <Route path="/donaciones" element={<Donaciones />} />
             <Route path="/ofertas" element={<Ofertas />} />
+            <Route path="/carrito" element={<Carrito />} />
           </Routes>
         </main>
 

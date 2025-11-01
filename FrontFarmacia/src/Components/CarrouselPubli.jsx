@@ -14,7 +14,7 @@ const CarrouselPubli = () => {
       buttonText: '¡Quiero!',
       bgColor: 'bg-pink-200',
       textColor: 'text-gray-900',
-      image: '/api/placeholder/400/300' // Reemplazar con tu imagen
+      image: 'link_a_la_imagen_1' // Reemplazar con tu imagen
     },
     {
       id: 2,

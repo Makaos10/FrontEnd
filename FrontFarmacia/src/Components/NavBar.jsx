@@ -1,28 +1,27 @@
 // src/Components/NavBar.jsx
+// src/Components/NavBar.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ShoppingCart, User } from 'lucide-react';
-import AuthModal from '../Paginas/AuthModal'; // ← IMPORTAR EL MODAL
+import AuthModal from '../Paginas/AuthModal';
 
 // Componente Navbar
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false); // ← ESTADO PARA EL MODAL
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-  // Función para abrir el modal
   const openAuthModal = () => {
     setIsAuthModalOpen(true);
-    setIsOpen(false); // Cierra el menú móvil si está abierto
+    setIsOpen(false);
   };
 
-  // Función para cerrar el modal
   const closeAuthModal = () => {
     setIsAuthModalOpen(false);
   };
 
   return (
     <>
-      <nav className="bg-white shadow-sm">
+      <nav className="bg-white shadow-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -32,7 +31,7 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Desktop Menu */}
+            {/* Menu PC */}
             <div className="hidden lg:flex space-x-8">
               <Link to="/" className="text-gray-700 hover:text-green-600 transition-colors">
                 Inicio
@@ -51,13 +50,17 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Desktop Buttons */}
+            {/* Botones PC */}
             <div className="hidden lg:flex items-center space-x-3">
-              <button className="flex items-center px-4 py-2 border border-green-600 text-green-600 rounded hover:bg-green-50 transition-colors">
+              {/* ← BOTÓN DEL CARRITO COMO LINK */}
+              <Link 
+                to="/carrito"
+                className="flex items-center px-4 py-2 border border-green-600 text-green-600 rounded hover:bg-green-50 transition-colors"
+              >
                 <ShoppingCart size={18} className="mr-2" />
                 Carrito
-              </button>
-              {/* ← BOTÓN QUE ABRE EL MODAL */}
+              </Link>
+              
               <button 
                 onClick={openAuthModal}
                 className="flex items-center px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
@@ -67,7 +70,7 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* Mobile menu button */}
+            {/* Boton del celu */}
             <div className="lg:hidden">
               <button onClick={() => setIsOpen(!isOpen)} className="text-gray-700">
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -76,7 +79,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Menu desde el celu */}
         {isOpen && (
           <div className="lg:hidden bg-white border-t">
             <div className="px-2 pt-2 pb-3 space-y-1">
@@ -115,10 +118,16 @@ const Navbar = () => {
               >
                 Donaciones
               </Link>
-              <button className="w-full mt-2 px-3 py-2 border border-green-600 text-green-600 rounded hover:bg-green-50">
+              
+              {/* ← Link del boton del carrito, desde el celu. */}
+              <Link 
+                to="/carrito"
+                className="block w-full mt-2 px-3 py-2 border border-green-600 text-green-600 rounded hover:bg-green-50"
+                onClick={() => setIsOpen(false)}
+              >
                 🛒 Carrito
-              </button>
-              {/* ← BOTÓN MÓVIL QUE ABRE EL MODAL */}
+              </Link>
+              
               <button 
                 onClick={openAuthModal}
                 className="w-full mt-2 px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700"
@@ -130,7 +139,6 @@ const Navbar = () => {
         )}
       </nav>
 
-      {/* ← MODAL DE AUTENTICACIÓN */}
       <AuthModal 
         isOpen={isAuthModalOpen} 
         onClose={closeAuthModal} 
