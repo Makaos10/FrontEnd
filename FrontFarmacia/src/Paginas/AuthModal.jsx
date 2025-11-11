@@ -1,5 +1,6 @@
 // src/Components/AuthModal.jsx
 import React, { useState } from 'react';
+import { authService } from '../services/api';
 
 const AuthModal = ({ isOpen, onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -19,48 +20,77 @@ const AuthModal = ({ isOpen, onClose }) => {
     }));
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.email || !formData.password) {
       alert('Por favor completa todos los campos');
       return;
     }
-    
-    // Lógica de registro con el backend
-    console.log('Login:', { email: formData.email, password: formData.password });
-    alert(`¡Bienvenido de nuevo! Iniciando sesión con: ${formData.email}`);
-    
-    // Limpia el formulario y lo cieraa
-    resetForm();
-    onClose();
+
+    try {
+      // Llamada al backend
+      const response = await authService.login({
+        email: formData.email,
+        password: formData.password
+      });
+
+      // Guardar usuario en localStorage
+      localStorage.setItem('user', JSON.stringify(response.user));
+
+      alert(`¡Bienvenido de nuevo, ${response.user.firstname}!`);
+
+      // Limpia el formulario y lo cierra
+      resetForm();
+      onClose();
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+    }
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.password) {
       alert('Por favor completa todos los campos');
       return;
     }
-    
+
     if (!formData.agreeTerms) {
       alert('Debes aceptar los términos y condiciones');
       return;
     }
-    
+
     if (formData.password.length < 8) {
       alert('La contraseña debe tener al menos 8 caracteres');
       return;
     }
-    
-    // Lógica de registro con el backend
-    console.log('Register:', formData);
-    alert(`¡Cuenta creada exitosamente! Bienvenido, ${formData.name}!`);
-    
-    // Limpia el formulario y cierra el modal
-    resetForm();
-    onClose();
+
+    try {
+      // Separar nombre completo en firstname y lastname
+      const nameParts = formData.name.trim().split(' ');
+      const firstname = nameParts[0];
+      const lastname = nameParts.slice(1).join(' ') || nameParts[0];
+
+      // Llamada al backend
+      const response = await authService.register({
+        firstname,
+        lastname,
+        email: formData.email,
+        password: formData.password
+      });
+
+      // Guardar usuario en localStorage
+      localStorage.setItem('user', JSON.stringify(response.user));
+
+      alert(`¡Cuenta creada exitosamente! Bienvenido, ${response.user.firstname}!`);
+
+      // Limpia el formulario y cierra el modal
+      resetForm();
+      onClose();
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+    }
   };
 
   const resetForm = () => {

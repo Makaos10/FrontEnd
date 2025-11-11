@@ -1,6 +1,7 @@
 // App.js
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
 
@@ -14,29 +15,31 @@ import Carrito from './Paginas/Carrito';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
-        
-        {/* NavBar siempre visible */}
-        <NavBar />
-        
-        {/* Contenido principal que cambia según la ruta */}
-        <main>
-          <Routes>
-            <Route path="/" element={<Inicio />} />
-            <Route path="/medicamentos" element={<Medicamentos />} />
-            <Route path="/cuidado-personal" element={<CuidadoPersonal />} />
-            <Route path="/donaciones" element={<Donaciones />} />
-            <Route path="/ofertas" element={<Ofertas />} />
-            <Route path="/carrito" element={<Carrito />} />
-          </Routes>
-        </main>
+    <CartProvider>
+      <BrowserRouter>
+        <div className="min-h-screen bg-gray-50">
 
-        {/* Footer siempre visible */}
-        <Footer />
-        
-      </div>
-    </BrowserRouter>
+          {/* NavBar siempre visible */}
+          <NavBar />
+
+          {/* Contenido principal que cambia según la ruta */}
+          <main>
+            <Routes>
+              <Route path="/" element={<Inicio />} />
+              <Route path="/medicamentos" element={<Medicamentos />} />
+              <Route path="/cuidado-personal" element={<CuidadoPersonal />} />
+              <Route path="/donaciones" element={<Donaciones />} />
+              <Route path="/ofertas" element={<Ofertas />} />
+              <Route path="/carrito" element={<Carrito />} />
+            </Routes>
+          </main>
+
+          {/* Footer siempre visible */}
+          <Footer />
+
+        </div>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

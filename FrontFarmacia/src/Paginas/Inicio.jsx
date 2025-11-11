@@ -1,42 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductoCarrousel from '../Components/ProductoCarrousel';
 import CarrouselPubli from '../Components/CarrouselPubli';
 import BannerCarrousel from '../Components/BannerCarrousel';
+import { articleService } from '../services/api';
 
 function Inicio() {
-  const masVendidosProductos = [
-    { image: 'imgg/Abrilar Jarabe 100 ML.jpg', name: 'Abrilar Jarabe 100ml', price: '180' },
-    { image: 'imgg/Bio grip C soluble.webp', name: 'Bio Grip C Soluble 1 Sobre', price: '270' },
-    { image: 'imgg/Dolex 500 MG 5 Capsulas Blandas.webp', name: 'Dolex 500 mg 5 cápsulas blandas', price: '230' },
-    { image: 'imgg/Novemina Fuerte 10 comp.webp', name: 'Novemina fuerte 10 comp.', price: '210' },
-    { image: 'imgg/Zolben 500 mg 12 Comp..webp', name: 'Zolben 500 mg 12 comp', price: '190' },
-    { image: 'imgg/Vimax Masticalble 50 MG 8 comp.jpg', name: 'Vimax Masticable 50 mg 8 comp.', price: '350' }
-  ];
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const suplementosProductos = [
-    { image: 'imgg/Abrilar Jarabe 100 ML.jpg', name: 'Abrilar Jarabe 100ml', price: '180' },
-    { image: 'imgg/Bio grip C soluble.webp', name: 'Bio Grip C Soluble 1 Sobre', price: '270' },
-    { image: 'imgg/Dolex 500 MG 5 Capsulas Blandas.webp', name: 'Dolex 500 mg 5 cápsulas blandas', price: '230' },
-    { image: 'imgg/Novemina Fuerte 10 comp.webp', name: 'Novemina fuerte 10 comp.', price: '210' },
-    { image: 'imgg/Zolben 500 mg 12 Comp..webp', name: 'Zolben 500 mg 12 comp', price: '190' },
-    { image: 'imgg/Vimax Masticalble 50 MG 8 comp.jpg', name: 'Vimax Masticable 50 mg 8 comp.', price: '350' }
-  ];
+  useEffect(() => {
+    // Cargar productos desde el backend
+    const fetchProductos = async () => {
+      try {
+        const articles = await articleService.getAll();
+        // Transformar los artículos al formato esperado por ProductoCarrousel
+        const productosFormateados = articles.map(article => ({
+          id: article.id,
+          image: article.image,
+          name: article.name,
+          price: article.price
+        }));
+        setProductos(productosFormateados);
+      } catch (error) {
+        console.error('Error al cargar productos:', error);
+        alert('No se pudieron cargar los productos. Asegúrate de que el backend esté corriendo.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProductos();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <p className="text-xl text-gray-600">Cargando productos...</p>
+      </div>
+    );
+  }
 
   return (
     <>
       <CarrouselPubli />
 
-      <ProductoCarrousel 
-        title="Medicamentos más vendidos" 
-        products={masVendidosProductos}
+      <ProductoCarrousel
+        title="Productos Disponibles"
+        products={productos}
       />
 
       <BannerCarrousel />
 
-      <ProductoCarrousel 
-        title="Suplementos" 
-        products={suplementosProductos}
-      />
+      {productos.length > 0 && (
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <p className="text-center text-gray-600">
+            📦 Mostrando {productos.length} producto(s) de ejemplo.
+            <br />
+            Los alumnos pueden agregar más productos desde el backend.
+          </p>
+        </div>
+      )}
     </>
   );
 }
